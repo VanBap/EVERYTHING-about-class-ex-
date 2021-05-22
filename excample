@@ -1,0 +1,56 @@
+#include <iostream>
+#include <iomanip>
+#include <algorithm>
+#include <string>
+using namespace std;
+class Student {
+  string MSV;
+	string HOTEN;
+	double DIEMSO;
+  
+public:
+
+	Student();
+	Student(string MSV_, string HOTEN_, double DIEMSO_);
+	Student(double DIEMSO_);
+	friend ostream& operator << (ostream & os, Student p2);
+	string name();
+	string id();
+	double cal_grade(double s1, double s2, double s3);
+};
+//================ CONSTRUCTOR====================//
+
+Student::Student() {
+	DIEMSO = 0.0;
+}
+Student::Student(string MSV_, string HOTEN_, double DIEMSO_) {
+	MSV = MSV_;
+	HOTEN = HOTEN_;
+	DIEMSO = DIEMSO_;
+}
+Student::Student(double DIEMSO_) {
+	DIEMSO = DIEMSO_;
+}
+//================================================//
+
+ostream& operator << (ostream & os, Student p2) {
+	cout << p2.MSV << "_" << fixed << setprecision (1) << p2.DIEMSO;
+	return os;
+}
+
+string Student::name() {
+	return HOTEN;
+}
+string Student::id() {
+	return MSV;
+}
+double Student::cal_grade(double s1, double s2, double s3) {
+	double tong;
+	tong = 0.1 * s1 + 0.3 * s2 + 0.6 * s3;
+	return tong;
+}
+int main() {
+	Student s("18020332", "NGUYEN VAN ANH", 9.0);
+	cout << s;
+	return 0;
+}
